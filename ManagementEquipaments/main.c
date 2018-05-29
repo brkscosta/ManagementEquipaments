@@ -337,7 +337,7 @@ int main() {
     LerEquipamentos(&info);
     ///Ciclo do while no menu de gestão.
     do {
-        printf("\t------------------Bem-vindo ao Menu Principal----------------------\n"); ///printsf's para exebir o menu
+        printf("\t------------------Welcome To Main Menu----------------------\n"); ///printsf's para exebir o menu
         printf("\t\t            1. Management Users\n");
         printf("\t\t            2. Management Equipaments\n");
         printf("\t\t            3. Management Requistions\n");
@@ -349,14 +349,14 @@ int main() {
         switch(op) {
         case 1: ///Condição se a opção selecionada for 1 aparecerá os seguintes submenus do menu clientes
             do {
-                printf("\t---------------------Menu de Utentes-------------------------------\n");
-                printf("\t\t    1. Ver informação de um utente\n");
-                printf("\t\t    2. Registar novo utente\n");
-                printf("\t\t    3. Alterar dados de um utente\n");
-                printf("\t\t    4. Listar infomação de utentes\n");
-                printf("\t\t    5. Voltar ao menu anterior\n");
+                printf("\t---------------------User Menu-------------------------------\n");
+                printf("\t\t    1. See a user information\n");
+                printf("\t\t    2. Add a new user\n");
+                printf("\t\t    3. Change user data\n");
+                printf("\t\t    4. List user information\n");
+                printf("\t\t    5. Back to previous menu\n");
                 printf("\t-------------------------------------------------------------------\n");
-                printf("Escolha sua opção:\n");
+                printf("Choose your option:\n");
                 scanf("%d", &op2);
                 switch(op2) {
                 case 1:
@@ -373,7 +373,7 @@ int main() {
                     break;
                 default :
                     system("cls");
-                    printf("Opção inválida!\n");
+                    printf("Invalid option!\n");
                     break;
                 }
             } while(op2 != 5);
@@ -381,13 +381,13 @@ int main() {
             break;
         case 2: ///Caso n�o for 1 mas sim 2, ir�  aparecer o segundo menu e as seguintes mensagens abaixo do menu equipamentos
             do {
-                printf("\t--------------------------Menu dos Equipamentos--------------------\n");
-                printf("\t\t    1. Ver Informação de um equipamento\n");
-                printf("\t\t    2. Registar novo equipamento\n");
-                printf("\t\t    3. Alterar informação de um equipamento\n");
-                printf("\t\t    4. Abater um equipamento\n");
-                printf("\t\t    5. Listagem de equipamentos\n");
-                printf("\t\t    6. Voltar ao menu anterior\n");
+                printf("\t--------------------------Equipment Menu--------------------\n");
+                printf("\t\t    1. See Equipment Information\n");
+                printf("\t\t    2. Register new equipment\n");
+                printf("\t\t    3. Change information of an equipment\n");
+                printf("\t\t    4. Shoot down an equipment\n");
+                printf("\t\t    5. Equipment Listing\n");
+                printf("\t\t    6. Back to previous menu\n");
                 printf("\t-------------------------------------------------------------------\n");
                 printf("Escolha sua opção:\n");
                 scanf("%d", &op3);
@@ -409,24 +409,24 @@ int main() {
                     break;
                 default :
                     system("cls");
-                    printf("Opção inválida!\n");
+                    printf("Invalid Option!\n");
                     break;
                 }
             } while(op3 != 6);
             system("cls");
             break;
 
-        case 3: ///Caso não for o primeiro ou segundo menu aparece os submenus das requiso��es
+        case 3: ///Caso não for o primeiro ou segundo menu aparece os submenus das requisições
             do {
+                printf("\t-------------------------- Requisition Menu -----------------------\n");
+                printf("\t\t    1. Register Equipment Requisition\n");
+                printf("\t\t    2. Register Equipment Delivery\n");
+                printf("\t\t    3. List of equipment required\n");
+                printf("\t\t    4. Available Equipment Listing\n");
+                printf("\t\t    5. Equipment Listing\n");
+                printf("\t\t    6. Back to previous menu\n");
                 printf("\t-------------------------------------------------------------------\n");
-                printf("\t\t    1. Registar requisição de equipamento\n");
-                printf("\t\t    2. Registar entrega de equipamento\n");
-                printf("\t\t    3. Listagem de equipamentos requisitados\n");
-                printf("\t\t    4. Listagem de Equipamentos disponíveis\n");
-                printf("\t\t    5. Listagem de equipamentos\n");
-                printf("\t\t    6. Voltar ao menu anterior\n");
-                printf("\t-------------------------------------------------------------------\n");
-                printf("Escolha sua opção:\n");
+                printf("Choose your option:\n");
                 scanf("%d", &op4);
                 switch(op4) {
                 /*case 1:
@@ -446,7 +446,7 @@ int main() {
                     break;*/
                 default :
                     system("cls");
-                    printf("Opção Inválida!\n");
+                    printf("Invalid Option!\n");
                     break;
                 }
             } while(op4 != 6);
@@ -455,7 +455,7 @@ int main() {
         case 4:
             EscreverEquipamentos(&info);
             EscreverUtentes(&k);
-            printf("Até breve!\n\a"); /// Mensagem exibida quando o usu�rio sair do programa.
+            printf("See You Later!\n\a"); /// Mensagem exibida quando o usu�rio sair do programa.
             system("pause");
             op2 = 0;
             break;
