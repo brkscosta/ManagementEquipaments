@@ -47,7 +47,7 @@ void LerUtentes() {
         }
         fclose(fid);
     } else
-        printf("Erro na abertura do ficheiro!\n");
+        printf("User database is empty!\n");
 }
 
 void EscreverUtentes(int *k) {
@@ -58,13 +58,14 @@ void EscreverUtentes(int *k) {
             fprintf(fid,"%d %d %d %s %s\n",listaUtentes[n].id,listaUtentes[n].numero_bi,listaUtentes[n].telefone,listaUtentes[n].nome,listaUtentes[n].morada);
         }
         fclose(fid);
-    } else printf("Erro na abertura do ficheiro!\n");
+    } else 
+        printf("Erro to open database!\n");
 }
 
 ///Função para ver informação do cliente
 void VerInformacaoUtente(int *k) {
     int id=0, existe;
-    printf("Digite o número do utente:\n");
+    printf("Write a user ID:\n");
     scanf("%d",&id);
     int i;
     for(i=0; i <= *k; i++) {
@@ -72,23 +73,23 @@ void VerInformacaoUtente(int *k) {
         if(id == listaUtentes[i].id) {
             existe = 1;
             printf("\t-------------------------------------------------------------------\n");
-            printf("Informação do utente:\n");
-            printf("Nome do utente: %s\n",listaUtentes[i].nome);
-            printf("Número BI do utente: %d\n",listaUtentes[i].numero_bi);
-            printf("Morada do utente: %s\n",listaUtentes[i].morada);
-            printf("Número de contacto:%d\n",listaUtentes[i].telefone);
+            printf("User Information:\n");
+            printf("Username: %s\n",listaUtentes[i].nome);
+            printf("Cityzen Card: %d\n",listaUtentes[i].numero_bi);
+            printf("User Address: %s\n",listaUtentes[i].morada);
+            printf("Phone Number:%d\n",listaUtentes[i].telefone);
             printf("\t-------------------------------------------------------------------\n");
         }
     }
     if(existe == 0)
-        printf("Utente não existe!\n");
+        printf("User not exists!\n");
 }
 
 ///Por estrutura for para incremento de utentes.
 ///Função para registo de utente
 int pergunta() {
     int j;
-    printf("Introduza o numero de registos a efetuar\n");
+    printf("Insert the number of records to do:\n");
     scanf("%d",&j);
     return j;
 }
@@ -98,10 +99,10 @@ void ListarInformacao(int *k) {
     for(i=0; i < *k; i++) {
         printf("\t-------------------------------------------------------------------\n");
         printf("\n");
-        printf("Id do Utente: %d\n",listaUtentes[i].id);
-        printf("Nome do utente: %s\n",listaUtentes[i].nome);
-        printf("Número BI: %d\n",listaUtentes[i].numero_bi);
-        printf("Telefone: %d\n\n",listaUtentes[i].telefone);
+        printf("User ID: %d\n",listaUtentes[i].id);
+        printf("Username: %s\n",listaUtentes[i].nome);
+        printf("Cityzen Number: %d\n",listaUtentes[i].numero_bi);
+        printf("Phone: %d\n\n",listaUtentes[i].telefone);
         printf("\t-------------------------------------------------------------------\n");
     }
 }
@@ -111,29 +112,29 @@ void RegistaUtente(int *k) {
     int i,j;
     j = pergunta();
     for( i = 1; i <= j; i++) {
-        printf("Digite o número para o utente:\n");
+        printf("Type a number for user:\n");
         scanf("%d", &listaUtentes[*k].id);
         fflush(stdin);
-        printf("Digite o nome do utente:\n");
+        printf("Type a name:\n");
         gets(listaUtentes[*k].nome);
         fflush(stdin);
-        printf("Digite o número do BI:\n");
+        printf("Type the cityzen card:\n");
         scanf("%d", &listaUtentes[*k].numero_bi);
         fflush(stdin);
-        printf("Digite a morada:\n");
+        printf("Type address:\n");
         gets(listaUtentes[*k].morada);
         fflush(stdin);
-        printf("Digite um número para contato:\n");
+        printf("Type a phone number:\n");
         scanf("%d", &listaUtentes[*k].telefone);
         fflush(stdin);
         system("cls");
-        printf("\t---------------------Resumo da Cria��o-----------------------------\n");
-        printf("Ficha criada com os seguintes dados:\n\n");
-        printf("Número utente(ID): %d\n",listaUtentes[*k].id);
-        printf("Nome: %s\n", listaUtentes[*k].nome);
-        printf("Número BI: %d\n", listaUtentes[*k].numero_bi);
-        printf("Morada: %s\n", listaUtentes[*k].morada);
-        printf("Número de telefone: %d\n", listaUtentes[*k].telefone);
+        printf("\t---------------------Resume of Record-----------------------------\n");
+        printf("Record created with the follow data:\n\n");
+        printf("User Number(ID): %d\n",listaUtentes[*k].id);
+        printf("Name: %s\n", listaUtentes[*k].nome);
+        printf("Cityzen Card number: %d\n", listaUtentes[*k].numero_bi);
+        printf("Address: %s\n", listaUtentes[*k].morada);
+        printf("Phone number: %d\n", listaUtentes[*k].telefone);
         printf("\t-------------------------------------------------------------------\n");
         (*k)++;
     }
@@ -148,11 +149,11 @@ void AlterarDadosUtente(int *k) {
 
         if(id == listaUtentes[i].id) {
             printf("\t-------------------------------------------------------------------\n");
-            printf("Informação do utente:\n");
-            printf("Nome do utente: %s\n",listaUtentes[i].nome);
-            printf("Número BI do utente: %d\n",listaUtentes[i].numero_bi);
-            printf("Morada do utente: %s\n",listaUtentes[i].morada);
-            printf("Número de contacto:%d\n",listaUtentes[i].telefone);
+            printf("User Information:\n");
+            printf("Username: %s\n",listaUtentes[i].nome);
+            printf("Cityzen Card Number: %d\n",listaUtentes[i].numero_bi);
+            printf("User Address: %s\n",listaUtentes[i].morada);
+            printf("Phone Number:%d\n",listaUtentes[i].telefone);
             printf("\t-------------------------------------------------------------------\n");
             printf("\t-------------------------------------------------------------------\n");
             printf("\n[Número de registo de Utente]- %d\n",id);
@@ -331,18 +332,18 @@ void ListagemDeEquipamentos(int *info) {
 }
 int main() {
     setlocale(LC_ALL,"portuguese"); ///Serve para identificar os caracteres com acentos.
-    int op, op2, op3, op4, k=0, info = 0; ///Declaração das variáveis
+    int op, op2, op3, op4, k = 0, info = 0; ///Declaração das variáveis
     LerUtentes(&k);
     LerEquipamentos(&info);
     ///Ciclo do while no menu de gestão.
     do {
         printf("\t------------------Bem-vindo ao Menu Principal----------------------\n"); ///printsf's para exebir o menu
-        printf("\t\t            1. Gestão de clientes\n");
-        printf("\t\t            2. Gestão de equipamentos\n");
-        printf("\t\t            3. Gestão de requisições\n");
-        printf("\t\t            4. Sair do programa\n");
+        printf("\t\t            1. Management Users\n");
+        printf("\t\t            2. Management Equipaments\n");
+        printf("\t\t            3. Management Requistions\n");
+        printf("\t\t            4. Quit\n");
         printf("\t-------------------------------------------------------------------\n");
-        printf("Escolha sua op��o:\n");
+        printf("Choice a option:\n");
         scanf("%d", &op);
         system("cls");
         switch(op) {
