@@ -8,33 +8,33 @@
  * File:   main.c
  * Author: Joanã Costa
  *
- * Created on 27 de Maio de 2018, 19:26
+ * Created on 27 de May of 2018, 19:26
  */
 /********************************
 ** Libraries Import **
 *********************************/
-#include <stdio.h> ///Biblioteca onde contém as funções básicas do programa.
-#include <stdlib.h> ///
-#include <string.h> ///Bibliotecas de operações com strings.
-#include <locale.h> ///Biblioteca onde caracteres com acentos são reconhecidos.
-#include <string.h> ///Biblioteca para funções com strings.
-#define MAX_REQUISICOES 4 ///Máximo de requisições que o usuário pode ter.
-#define MAX_EQUIPAMENTOS 10 ///Numero maximo de equipamentos
-#define MAX_UTENTES 10 ///Número máximo de utentes.
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h>
+#include <locale.h>
+#include <string.h>
+#define MAX_REQUISITION 4 //Maximum number of requests the user may have.
+#define MAX_EQUIPAMENTs 10 //Maximum number of equipment
+#define MAX_USERS 10 //Maximum number of users.
 
 /*************************************
- ****** Definição de Estruturas******
+ ****** Definition of Structures *****
 **************************************/
 
-///Estrutura para criação de utente.
+//Structure for user creation.
 typedef struct {
-    char nome[50];
-    char morada[100];
+    char name[50];
+    char address[100];
     int id;
-    int numero_bi;
-    int telefone;
-} utentes;
-utentes listaUtentes[MAX_UTENTES];
+    int cityzenNumber;
+    int phone;
+} peoples;
+users usersList[MAX_USERS];
 
 void LerUtentes() {
     FILE *fid = fopen("database.txt", "r");
