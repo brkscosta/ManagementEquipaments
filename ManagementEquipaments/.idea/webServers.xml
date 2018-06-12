@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="af8d1a9c-60c7-4d27-a8df-63b1b18627c6" name="CommitsLogs" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\Users\brkscosta\Documents\GitHub\ManagementEquipaments\CommitsLogs" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="CommitsLogs" uploadOnCheckin="af8d1a9c-60c7-4d27-a8df-63b1b18627c6">
+    <serverData>
+      <paths name="CommitsLogs">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="CommitsLogs" />
+  </component>
+</project>
