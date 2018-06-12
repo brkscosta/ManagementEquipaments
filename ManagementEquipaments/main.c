@@ -24,7 +24,7 @@
 #include <locale.h>
 #include <string.h>
 
-#define MAX_REQUISITION 4 //Maximum number of requests the user may have.
+//#define MAX_REQUISITION 4 //Maximum number of requests the user may have.
 #define MAX_EQUIPAMENTS 10 //Maximum number of equipment
 #define MAX_USERS 10 //Maximum number of users.
 
@@ -45,43 +45,57 @@ typedef struct {
 users usersList[MAX_USERS];
 
 void readUsers() {
-    FILE *fid = fopen("database.txt", "r");
+
     int n = 0;
+
+    FILE *fid = fopen("database.txt", "r");
+
     if (fid) {
+
         while (!feof(fid)) {
             fscanf(fid, "%d %d %d %s %s\n", &usersList[n].id, &usersList[n].citizenCardNumber, &usersList[n].phone,
                    usersList[n].name, usersList[n].address);
             //(k)++;
             n++;
         }
+
         fclose(fid);
+
     } else
         printf("User database is empty!\n");
 }
 
 void writeUser(int *k) {
-    FILE *fid = fopen("database.txt", "w+");
+
     int n = 0;
+
+    FILE *fid = fopen("database.txt", "w+");
+
     if (fid) {
+
         for (n = 0; n < (*k); n++) {
             fprintf(fid, "%d %d %d %s %s\n", usersList[n].id, usersList[n].citizenCardNumber, usersList[n].phone,
                     usersList[n].name, usersList[n].address);
         }
+
         fclose(fid);
+
     } else
         printf("Database not found!\n");
 }
 
-///Função para ver informação do cliente
-void showUserInformation(int *k) {
-    int id = 0, existe;
+/// Function to view customer information
+void showUserInformation(const int *k) {
+
+    int id = 0, isExists = 0, i;
+
     printf("Write a user ID:\n");
     scanf("%d", &id);
-    int i;
+
     for (i = 0; i <= *k; i++) {
 
         if (id == usersList[i].id) {
-            existe = 1;
+            isExists = 1;
             printf("\t-------------------------------------------------------------------\n");
             printf("User Information:\n");
             printf("Username: %s\n", usersList[i].name);
@@ -91,7 +105,8 @@ void showUserInformation(int *k) {
             printf("\t-------------------------------------------------------------------\n");
         }
     }
-    if (existe == 0)
+
+    if (isExists == 0)
         printf("User not exists!\n");
 }
 
@@ -103,7 +118,7 @@ int questionInsertRecordsUsers() {
     return j;
 }
 
-void showAllUserRecords(int *k) {
+void showAllUserRecords(const int *k) {
     int i;
     for (i = 0; i < *k; i++) {
         printf("\t-------------------------------------------------------------------\n");
@@ -149,12 +164,14 @@ void insertNewUser(int *k) {
     }
 }
 
-void changeUserData(int *k) {
-    int id;
+void changeUserData(const int *k) {
+    int id, i;
+
     printf("\t-------------------------------------------------------------------\n");
     printf("Which user do you want to change, enter the (ID)?\n");
     scanf("%d", &id);
-    int i;
+
+
     for (i = 0; i <= *k; i++) {
 
         if (id == usersList[i].id) {
@@ -166,20 +183,20 @@ void changeUserData(int *k) {
             printf("Phone Number:%d\n", usersList[i].phone);
             printf("\t-------------------------------------------------------------------\n");
             printf("\t-------------------------------------------------------------------\n");
-            printf("\n[Número de registo de Utente]- %d\n", id);
-            printf("\n\n-Número de Utente: %d\n", id);
-            printf("\n-Nome do Utente: ");
+            printf("\n[User registration number]- %d\n", id);
+            printf("\n\n-Number: %d\n", id);
+            printf("\n-Nome: ");
             fflush(stdin);
             fgets(usersList[i].name,200,stdin);
-            printf("\n-Número do Bilhete de Identidade: ");
+            printf("\n-Identity Card Number: ");
             scanf("%d", &usersList[i].citizenCardNumber);
-            printf("\n-Morada do Utente: ");
+            printf("\n-Address ");
             fflush(stdin);
             fgets(usersList[i].address, 200, stdin);
-            printf("\n-Numero de Telefone: ");
+            printf("\n-Phone Number ");
             scanf("%d", &usersList[i].phone);
             getchar();
-            printf("Registo alterado com sucesso!");
+            printf("Record changed!");
             fflush(stdin);
             system("cls");
             printf("\t-------------------------------------------------------------------\n");
@@ -196,60 +213,83 @@ typedef struct {
 } equipaments;
 equipaments equipamentsList[MAX_EQUIPAMENTS];
 
+
 void readEquipaments(int *info) {
-    FILE *fid2 = fopen("database2.txt", "r");
+
     int n = 0;
+
+    FILE *fid2 = fopen("database2.txt", "r");
+
     if (fid2) {
+
         while (!feof(fid2)) {
             fscanf(fid2, "%d %d %s\n", &equipamentsList[n].id, &equipamentsList[n].sn, equipamentsList[n].name);
             (*info)++;
             n++;
         }
+
         fclose(fid2);
-    } else printf("Erro na abertura do ficheiro!\n");
+
+    } else
+        printf("Error opening file!\n");
 }
 
 void writeEquipaments(int *info) {
-    FILE *fid2 = fopen("database2.txt", "w+");
+
     int n = 0;
+
+    FILE *fid2 = fopen("database2.txt", "w+");
+
     if (fid2) {
+
         for (n = 0; n < (*info); n++) {
             fprintf(fid2, "%d %d %s\n", equipamentsList[n].id, equipamentsList[n].sn, equipamentsList[n].name);
         }
+
         fclose(fid2);
-    } else printf("Erro na abertura do ficheiro!\n");
+
+    } else
+        printf("Error opening file!\n");
 }
 
 
 void showInfoEquipament(int info) {
-    int i, dados = 0, existe;
-    printf("Digite o numero do equipamento:\n");
-    scanf("%d", &dados);
+
+    int i, data = 0, isExists = 0;
+
+    printf("Enter the equipment number (ID):\n");
+    scanf("%d", &data);
+
     for (i = 0; i <= info; i++) {
-        if (dados == equipamentsList[i].id) {
-            existe = 1;
+        if (data == equipamentsList[i].id) {
+            isExists = 1;
             printf("\t-------------------------------------------------------------------\n");
-            printf("Informação do equipamento:\n");
-            printf("Nome do equipamento: %s\n", equipamentsList[i].name);
-            printf("Serial Number do equipamento: %d\n", equipamentsList[i].sn);
+            printf("Equipment Information:\n");
+            printf("Name: %s\n", equipamentsList[i].name);
+            printf("Serial Number: %d\n", equipamentsList[i].sn);
             printf("\t-------------------------------------------------------------------\n");
             break;
         }
 
     }
-    if (existe == 0) {
-        printf("Equipamentos não existe!\n");
+
+    if (isExists == 0) {
+        printf("Equipament not found!\n");
     }
 
 }
 
 int questionInsertRecordsEquipaments(int info, int k) {
+
     int i;
-    printf("Introduza o número de registos a efetuar\n");
+
+    printf("Quantity of equipment to be registered\n");
     scanf("%d", &equipamentsList[info].id);
+
     for (i = 1; equipamentsList[info].id; i++) {
+
         if (equipamentsList[i].id == k) {
-            printf("Número de ID já registado!\n");
+            printf("ID already registered!\n");
             break;
         }
     }
@@ -257,54 +297,60 @@ int questionInsertRecordsEquipaments(int info, int k) {
 }
 
 void insertEquipament(int info) {
-    int i, k;
+
+    int i, k = 0;
+
     k = questionInsertRecordsEquipaments(k, info);
+
     for (i = 1; i <= k; i++) {
         printf("\t-------------------------------------------------------------------\n");
-        printf("Digite ID para o equipamento:\n");
+        printf("Enter the ID for your equipament:\n");
         scanf("%d", &equipamentsList[info].id);
         fflush(stdin);
-        printf("Digite o S/N do equipamento:\n");
+        printf("Type the S/N of equipament:\n");
         scanf("%d", &equipamentsList[info].sn);
         fflush(stdin);
-        printf("Digite o name do equipamento:\n");
-        //fgets(listaEquipamentos[info].nome);
-        scanf("%d", equipamentsList[info].name);
+        printf("Type o name do equipament:\n");
+        fgets(equipamentsList[info].name, 200, stdin);
+        scanf("%s", equipamentsList[info].name);
         fflush(stdin);
         system("cls");
-        printf("\t---------------------Resumo da Criação-----------------------------\n");
-        printf("Ficha criada com os seguintes dados:\n\n");
-        printf("ID do equipamento: %d\n", equipamentsList[info].id);
-        printf("Número S/N: %d\n", equipamentsList[info].sn);
-        printf("Nome: %s\n", equipamentsList[info].name);
+        printf("\t----------------------Resume of Record-----------------------------\n");
+        printf("Card created with the following data:\n\n");
+        printf("Equipament ID: %d\n", equipamentsList[info].id);
+        printf("Name: %s\n", equipamentsList[info].name);
+        printf("S/N: %d\n", equipamentsList[info].sn);
         printf("\t-------------------------------------------------------------------\n");
         (info)++;
     }
 }
 
 void changeEquipamentsData(int info) {
-    int dados;
+
+    int data, i;
+
     printf("\t-------------------------------------------------------------------\n");
-    printf("Digite o ID do equipamento que deseja alterar\n");
-    scanf("%d", &dados);
-    int i;
+    printf("Enter the ID of the equipament you want to change\n");
+    scanf("%d", &data);
+
     for (i = 0; i <= info; i++) {
-        if (dados == equipamentsList[i].id) {
+
+        if (data == equipamentsList[i].id) {
             printf("\t-------------------------------------------------------------------\n");
-            printf("Informação do Equipamento:\n");
-            printf("Nome do equipamento: %s\n", equipamentsList[i].name);
+            printf("Equipament Information:\n");
+            printf("Name equipament: %s\n", equipamentsList[i].name);
             printf("Serial Number: %d\n", equipamentsList[i].sn);
             printf("\t-------------------------------------------------------------------\n");
             printf("\t-------------------------------------------------------------------\n");
-            printf("\n[ID do equipamento a alterar]- %d\n", dados);
-            printf("\n\n-ID do equipamento: %d\n", dados);
-            printf("\n-Nome do equipamento: ");
+            printf("\n[ID equipament to change]- %d\n", data);
+            printf("\n\n-ID equipament: %d\n", data);
+            printf("\n-Name equipament: ");
             fflush(stdin);
             fgets(equipamentsList[i].name, 200, stdin);
-            printf("\n-Serial Number do equipamento: ");
+            printf("\n-Serial Number equipament: ");
             scanf("%d", &equipamentsList[i].sn);
             getchar();
-            printf("Registo alterado com sucesso!");
+            printf("Record changed");
             fflush(stdin);
             system("cls");
             printf("\t-------------------------------------------------------------------\n");
@@ -313,43 +359,52 @@ void changeEquipamentsData(int info) {
 }
 
 void deleteEquipament(int info) {
-    int i, dados, verdade;
-    printf("Digite o ID do equipamento a abater:\n");
-    scanf("%d", &dados);
+
+    int i, data, isExists = 0;
+
+    printf("Enter the ID of the equipament to be deleted:\n");
+    scanf("%d", &data);
+
     for (i = 0; i <= info; i++) {
-        if (dados == equipamentsList[i].id) {
-            verdade = 1;
+
+        if (data == equipamentsList[i].id) {
+            isExists = 1;
             equipamentsList[i].id = 0;
-            printf("Equipamento abatido com sucesso!\n");
+            printf("Equipament successfully deleted\n");
             break;
         }
     }
-    if (verdade == 0)
-        printf("Equipamento não consta nos registos!\n");
+
+    if (isExists == 0)
+        printf("Equipament not found!\n");
 }
 
 void showAllEquipaments(int info) {
+
     int i;
+
     for (i = 0; i < info; i++) {
+
         if (equipamentsList[i].id >= 1) {
             printf("\t-------------------------------------------------------------------\n");
             printf("\n");
-            printf("Nome do equipamento: %s\n", equipamentsList[i].name);
-            printf("Serial number do equipamento: %d\n", equipamentsList[i].sn);
+            printf("Equipaments Info: %s\n", equipamentsList[i].name);
+            printf("Serial number equipament: %d\n", equipamentsList[i].sn);
             printf("\t-------------------------------------------------------------------\n");
         } else
-            printf("Não há equipamenetos!\n");
+            printf("There are no equipaments!\n");
     }
 }
 
 int main() {
-    setlocale(LC_ALL, "portuguese"); ///Serve para identificar os caracteres com acentos.
-    int op, op2, op3, op4, k = 0, info = 0; ///Declaração das variáveis
-    readUsers(&k);
+
+    int op, op2 = 0, op3, op4, k = 0, info = 0;
+    setlocale(LC_ALL, "");
+    readUsers();
     readEquipaments(&info);
-    ///Ciclo do while no menu de gestão.
+
     do {
-        printf("\t------------------Welcome To Main Menu----------------------\n"); ///printsf's para exebir o menu
+        printf("\t------------------Welcome To Main Menu----------------------\n");
         printf("\t\t            1. Management Users\n");
         printf("\t\t            2. Management Equipaments\n");
         printf("\t\t            3. Management Requistions\n");
@@ -359,7 +414,7 @@ int main() {
         scanf("%d", &op);
         system("cls");
         switch (op) {
-            case 1: ///Condição se a opção selecionada for 1 aparecerá os seguintes submenus do menu clientes
+            case 1:
                 do {
                     printf("\t------------------------- User Menu -------------------------------\n");
                     printf("\t\t    1. See a user information\n");
@@ -391,7 +446,7 @@ int main() {
                 } while (op2 != 5);
                 system("cls");
                 break;
-            case 2: ///Caso n�o for 1 mas sim 2, ir�  aparecer o segundo menu e as seguintes mensagens abaixo do menu equipamentos
+            case 2:
                 do {
                     printf("\t--------------------------Equipment Menu--------------------\n");
                     printf("\t\t    1. See Equipment Information\n");
@@ -401,7 +456,7 @@ int main() {
                     printf("\t\t    5. Equipment Listing\n");
                     printf("\t\t    6. Back to previous menu\n");
                     printf("\t-------------------------------------------------------------------\n");
-                    printf("Escolha sua opção:\n");
+                    printf("Choose your option:\n");
                     scanf("%d", &op3);
                     switch (op3) {
                         case 1:
@@ -428,7 +483,7 @@ int main() {
                 system("cls");
                 break;
 
-            case 3: ///Caso não for o primeiro ou segundo menu aparece os submenus das requisições
+            case 3:
                 do {
                     printf("\t-------------------------- Requisition Menu -----------------------\n");
                     printf("\t\t    1. Register Equipment Requisition\n");
@@ -476,10 +531,11 @@ int main() {
         case 4:
             writeEquipaments(&info);
                 writeUser(&k);
-            printf("See You Later!\n\a"); /// Mensagem exibida quando o usu�rio sair do programa.
+            printf("See You Later!\n\a");
             system("pause");
             op2 = 0;
             break;
+            default:break;
         }
     } while(op2!= 0);
     return 0;
