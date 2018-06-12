@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named managementequipaments
+# Target rules for targets named ManagementEquipaments
 
 # Build rule for target.
-managementequipaments: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 managementequipaments
-.PHONY : managementequipaments
+ManagementEquipaments: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 ManagementEquipaments
+.PHONY : ManagementEquipaments
 
 # fast build rule for target.
-managementequipaments/fast:
-	$(MAKE) -f CMakeFiles\managementequipaments.dir\build.make CMakeFiles/managementequipaments.dir/build
-.PHONY : managementequipaments/fast
+ManagementEquipaments/fast:
+	$(MAKE) -f CMakeFiles\ManagementEquipaments.dir\build.make CMakeFiles/ManagementEquipaments.dir/build
+.PHONY : ManagementEquipaments/fast
 
 main.obj: main.c.obj
 
@@ -128,7 +128,7 @@ main.obj: main.c.obj
 
 # target to build an object file
 main.c.obj:
-	$(MAKE) -f CMakeFiles\managementequipaments.dir\build.make CMakeFiles/managementequipaments.dir/main.c.obj
+	$(MAKE) -f CMakeFiles\ManagementEquipaments.dir\build.make CMakeFiles/ManagementEquipaments.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -137,7 +137,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles\managementequipaments.dir\build.make CMakeFiles/managementequipaments.dir/main.c.i
+	$(MAKE) -f CMakeFiles\ManagementEquipaments.dir\build.make CMakeFiles/ManagementEquipaments.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -146,7 +146,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles\managementequipaments.dir\build.make CMakeFiles/managementequipaments.dir/main.c.s
+	$(MAKE) -f CMakeFiles\ManagementEquipaments.dir\build.make CMakeFiles/ManagementEquipaments.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -155,7 +155,7 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... managementequipaments
+	@echo ... ManagementEquipaments
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main.obj

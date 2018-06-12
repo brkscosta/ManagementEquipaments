@@ -39,17 +39,17 @@ typedef struct {
     char name[50];
     char address[100];
     int id;
-    int cityzenNumber;
+    int citizenCardNumber;
     int phone;
 } users;
 users usersList[MAX_USERS];
 
-void LerUtentes() {
+void readUsers() {
     FILE *fid = fopen("database.txt", "r");
     int n = 0;
     if (fid) {
         while (!feof(fid)) {
-            fscanf(fid, "%d %d %d %s %s\n", &usersList[n].id, &usersList[n].cityzenNumber, &usersList[n].phone,
+            fscanf(fid, "%d %d %d %s %s\n", &usersList[n].id, &usersList[n].citizenCardNumber, &usersList[n].phone,
                    usersList[n].name, usersList[n].address);
             //(k)++;
             n++;
@@ -59,12 +59,12 @@ void LerUtentes() {
         printf("User database is empty!\n");
 }
 
-void EscreverUtentes(int *k) {
+void writeUser(int *k) {
     FILE *fid = fopen("database.txt", "w+");
     int n = 0;
     if (fid) {
         for (n = 0; n < (*k); n++) {
-            fprintf(fid, "%d %d %d %s %s\n", usersList[n].id, usersList[n].cityzenNumber, usersList[n].phone,
+            fprintf(fid, "%d %d %d %s %s\n", usersList[n].id, usersList[n].citizenCardNumber, usersList[n].phone,
                     usersList[n].name, usersList[n].address);
         }
         fclose(fid);
@@ -73,7 +73,7 @@ void EscreverUtentes(int *k) {
 }
 
 ///Função para ver informação do cliente
-void VerInformacaoUtente(int *k) {
+void showUserInformation(int *k) {
     int id = 0, existe;
     printf("Write a user ID:\n");
     scanf("%d", &id);
@@ -85,7 +85,7 @@ void VerInformacaoUtente(int *k) {
             printf("\t-------------------------------------------------------------------\n");
             printf("User Information:\n");
             printf("Username: %s\n", usersList[i].name);
-            printf("Cityzen Card: %d\n", usersList[i].cityzenNumber);
+            printf("Citizen Card: %d\n", usersList[i].citizenCardNumber);
             printf("User Address: %s\n", usersList[i].address);
             printf("Phone Number:%d\n", usersList[i].phone);
             printf("\t-------------------------------------------------------------------\n");
@@ -95,32 +95,31 @@ void VerInformacaoUtente(int *k) {
         printf("User not exists!\n");
 }
 
-///Por estrutura for para incremento de utentes.
-///Função para registo de utente
-int pergunta() {
+
+int questionInsertRecordsUsers() {
     int j;
     printf("Insert the number of records to do:\n");
     scanf("%d", &j);
     return j;
 }
 
-void ListarInformacao(int *k) {
+void showAllUserRecords(int *k) {
     int i;
     for (i = 0; i < *k; i++) {
         printf("\t-------------------------------------------------------------------\n");
         printf("\n");
         printf("User ID: %d\n", usersList[i].id);
         printf("Username: %s\n", usersList[i].name);
-        printf("Cityzen Number: %d\n", usersList[i].cityzenNumber);
+        printf("Citizen Number: %d\n", usersList[i].citizenCardNumber);
         printf("Phone: %d\n\n", usersList[i].phone);
         printf("\t-------------------------------------------------------------------\n");
     }
 }
 
-void RegistaUtente(int *k) {
+void insertNewUser(int *k) {
 
     int i, j;
-    j = pergunta();
+    j = questionInsertRecordsUsers();
     for (i = 1; i <= j; i++) {
         printf("Type a number for user:\n");
         scanf("%d", &usersList[*k].id);
@@ -128,8 +127,8 @@ void RegistaUtente(int *k) {
         printf("Type a name:\n");
         fgets(usersList[*k].name, 200, stdin);
         fflush(stdin);
-        printf("Type the cityzen card:\n");
-        scanf("%d", &usersList[*k].cityzenNumber);
+        printf("Type the citizen card:\n");
+        scanf("%d", &usersList[*k].citizenCardNumber);
         fflush(stdin);
         printf("Type address:\n");
         fgets(usersList[*k].address, 200, stdin);
@@ -142,7 +141,7 @@ void RegistaUtente(int *k) {
         printf("Record created with the follow data:\n\n");
         printf("User Number(ID): %d\n", usersList[*k].id);
         printf("Name: %s\n", usersList[*k].name);
-        printf("Cityzen Card number: %d\n", usersList[*k].cityzenNumber);
+        printf("Citizen Card number: %d\n", usersList[*k].citizenCardNumber);
         printf("Address: %s\n", usersList[*k].address);
         printf("Phone number: %d\n", usersList[*k].phone);
         printf("\t-------------------------------------------------------------------\n");
@@ -150,10 +149,10 @@ void RegistaUtente(int *k) {
     }
 }
 
-void AlterarDadosUtente(int *k) {
+void changeUserData(int *k) {
     int id;
     printf("\t-------------------------------------------------------------------\n");
-    printf("Qual utente que deseja alterar?\n");
+    printf("Which user do you want to change, enter the (ID)?\n");
     scanf("%d", &id);
     int i;
     for (i = 0; i <= *k; i++) {
@@ -162,7 +161,7 @@ void AlterarDadosUtente(int *k) {
             printf("\t-------------------------------------------------------------------\n");
             printf("User Information:\n");
             printf("Username: %s\n", usersList[i].name);
-            printf("Cityzen Card Number: %d\n", usersList[i].cityzenNumber);
+            printf("Citizen Card Number: %d\n", usersList[i].citizenCardNumber);
             printf("User Address: %s\n", usersList[i].address);
             printf("Phone Number:%d\n", usersList[i].phone);
             printf("\t-------------------------------------------------------------------\n");
@@ -173,7 +172,7 @@ void AlterarDadosUtente(int *k) {
             fflush(stdin);
             fgets(usersList[i].name,200,stdin);
             printf("\n-Número do Bilhete de Identidade: ");
-            scanf("%d", &usersList[i].cityzenNumber);
+            scanf("%d", &usersList[i].citizenCardNumber);
             printf("\n-Morada do Utente: ");
             fflush(stdin);
             fgets(usersList[i].address, 200, stdin);
@@ -189,7 +188,7 @@ void AlterarDadosUtente(int *k) {
 
 }
 
-///Declara��o de fun��es e estruturas da parte dos equipamentos no programa
+/// Declaration of functions and structs of the equipment part in the program
 typedef struct {
     int id;
     int sn;
@@ -197,7 +196,7 @@ typedef struct {
 } equipaments;
 equipaments equipamentsList[MAX_EQUIPAMENTS];
 
-void LerEquipamentos(int *info) {
+void readEquipaments(int *info) {
     FILE *fid2 = fopen("database2.txt", "r");
     int n = 0;
     if (fid2) {
@@ -210,7 +209,7 @@ void LerEquipamentos(int *info) {
     } else printf("Erro na abertura do ficheiro!\n");
 }
 
-void EscreverEquipamentos(int *info) {
+void writeEquipaments(int *info) {
     FILE *fid2 = fopen("database2.txt", "w+");
     int n = 0;
     if (fid2) {
@@ -222,7 +221,7 @@ void EscreverEquipamentos(int *info) {
 }
 
 
-void VerInformacaoEquipamento(int info) {
+void showInfoEquipament(int info) {
     int i, dados = 0, existe;
     printf("Digite o numero do equipamento:\n");
     scanf("%d", &dados);
@@ -244,7 +243,7 @@ void VerInformacaoEquipamento(int info) {
 
 }
 
-int perguntaEquipamentos(int info, int k) {
+int questionInsertRecordsEquipaments(int info, int k) {
     int i;
     printf("Introduza o número de registos a efetuar\n");
     scanf("%d", &equipamentsList[info].id);
@@ -257,9 +256,9 @@ int perguntaEquipamentos(int info, int k) {
     return k;
 }
 
-void RegistaEquipamento(int info) {
+void insertEquipament(int info) {
     int i, k;
-    k = perguntaEquipamentos(k, info);
+    k = questionInsertRecordsEquipaments(k, info);
     for (i = 1; i <= k; i++) {
         printf("\t-------------------------------------------------------------------\n");
         printf("Digite ID para o equipamento:\n");
@@ -283,7 +282,7 @@ void RegistaEquipamento(int info) {
     }
 }
 
-void AlteraDadosEquipamentos(int info) {
+void changeEquipamentsData(int info) {
     int dados;
     printf("\t-------------------------------------------------------------------\n");
     printf("Digite o ID do equipamento que deseja alterar\n");
@@ -313,7 +312,7 @@ void AlteraDadosEquipamentos(int info) {
     }
 }
 
-void AbateEquipamento(int info) {
+void deleteEquipament(int info) {
     int i, dados, verdade;
     printf("Digite o ID do equipamento a abater:\n");
     scanf("%d", &dados);
@@ -329,7 +328,7 @@ void AbateEquipamento(int info) {
         printf("Equipamento não consta nos registos!\n");
 }
 
-void ListagemDeEquipamentos(int info) {
+void showAllEquipaments(int info) {
     int i;
     for (i = 0; i < info; i++) {
         if (equipamentsList[i].id >= 1) {
@@ -346,8 +345,8 @@ void ListagemDeEquipamentos(int info) {
 int main() {
     setlocale(LC_ALL, "portuguese"); ///Serve para identificar os caracteres com acentos.
     int op, op2, op3, op4, k = 0, info = 0; ///Declaração das variáveis
-    LerUtentes(&k);
-    LerEquipamentos(&info);
+    readUsers(&k);
+    readEquipaments(&info);
     ///Ciclo do while no menu de gestão.
     do {
         printf("\t------------------Welcome To Main Menu----------------------\n"); ///printsf's para exebir o menu
@@ -373,16 +372,16 @@ int main() {
                     scanf("%d", &op2);
                     switch (op2) {
                         case 1:
-                            VerInformacaoUtente(&k);
+                            showUserInformation(&k);
                             break;
                         case 2:
-                            RegistaUtente(&k);
+                            insertNewUser(&k);
                             break;
                         case 3:
-                            AlterarDadosUtente(&k);
+                            changeUserData(&k);
                             break;
                         case 4:
-                            ListarInformacao(&k);
+                            showAllUserRecords(&k);
                             break;
                         default :
                             system("cls");
@@ -406,19 +405,19 @@ int main() {
                     scanf("%d", &op3);
                     switch (op3) {
                         case 1:
-                            VerInformacaoEquipamento(info);
+                            showInfoEquipament(info);
                             break;
                         case 2:
-                            RegistaEquipamento(info);
+                            insertEquipament(info);
                             break;
                         case 3:
-                            AlteraDadosEquipamentos(info);
+                            changeEquipamentsData(info);
                             break;
                         case 4:
-                            AbateEquipamento(info);
+                            deleteEquipament(info);
                             break;
                         case 5:
-                            ListagemDeEquipamentos(info);
+                            showAllEquipaments(info);
                             break;
                         default :
                             system("cls");
@@ -475,8 +474,8 @@ int main() {
             system("cls");
             break;
         case 4:
-            EscreverEquipamentos(&info);
-            EscreverUtentes(&k);
+            writeEquipaments(&info);
+                writeUser(&k);
             printf("See You Later!\n\a"); /// Mensagem exibida quando o usu�rio sair do programa.
             system("pause");
             op2 = 0;
