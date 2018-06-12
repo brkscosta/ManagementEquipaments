@@ -1,0 +1,3 @@
+C:/Users/brkscosta/Documents/GitHub/ManagementEquipaments/ManagementEquipaments/CMakeFiles/ManagementEquipaments.dir
+C:/Users/brkscosta/Documents/GitHub/ManagementEquipaments/ManagementEquipaments/CMakeFiles/edit_cache.dir
+C:/Users/brkscosta/Documents/GitHub/ManagementEquipaments/ManagementEquipaments/CMakeFiles/rebuild_cache.dir
